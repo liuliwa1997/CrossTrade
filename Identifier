@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract CrossTrade {
+    event SwapRequest(address indexed user, uint256 amount, string targetChain);
+
+    function requestSwap(string calldata targetChain) external payable {
+        require(msg.value > 0, "Need ETH to swap");
+        emit SwapRequest(msg.sender, msg.value, targetChain);
+    }
+}
